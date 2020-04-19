@@ -20,3 +20,9 @@ Feature: Login
     When user logs is as a store manage
     Then user should verify that title is a Dashboard
 
+
+    @login_with_params
+  Scenario: Login with parameters
+    When user enters "storemanager85" username and "UserUser123" password
+    Then user should verify that title is a Dashboard
+
