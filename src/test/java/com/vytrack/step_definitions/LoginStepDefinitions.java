@@ -39,4 +39,10 @@ public class LoginStepDefinitions {
         Driver.closeDriver();
 
     }
+
+    @When("user enters {string} username and {string} password")
+    public void user_enters_username_and_password(String string, String string2) {
+        System.out.printf("Login with user name % and % password", string, string2);
+        loginPage.login(string,string2);
+    }
 }
