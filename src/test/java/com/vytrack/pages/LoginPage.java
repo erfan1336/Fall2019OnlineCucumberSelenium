@@ -12,7 +12,7 @@ public class LoginPage extends AbstractPageBase{
 
     @FindBy(id = "prependedInput")
     private WebElement username;
-//    public WebElement username2 = Driver.getDriver().findElement(By.id("prependedInput"));
+ // public WebElement username2 = Driver.getDriver().findElement(By.id("prependedInput"));
 
     @FindBy(id = "prependedInput2")
     private WebElement password;
@@ -44,6 +44,8 @@ public class LoginPage extends AbstractPageBase{
      * @param usernameValue
      * @param passwordValue
      */
+
+
     public void login(String usernameValue, String passwordValue) {
         username.sendKeys(usernameValue);
         password.sendKeys(passwordValue, Keys.ENTER);
@@ -61,5 +63,26 @@ public class LoginPage extends AbstractPageBase{
         password.sendKeys(ConfigurationReader.getProperty("password"), Keys.ENTER);
         BrowserUtilities.waitForPageToLoad(10);
         BrowserUtilities.wait(3);
+    }
+
+    /**
+     * this method stands for login based on user type
+     * if parameter is equals to driver, user will login as a driver
+     * @param role --> driver, sales manager, or store manager
+     * if role parameter is not correct, method will throw exception
+     */
+    public void login(String role){
+        String userName = "";
+        if (role.equalsIgnoreCase("driver")){
+            userName = "user15";
+        }else if (role.equalsIgnoreCase("sales manager")){
+            userName = "salesmanager110";
+        }else if (role.equalsIgnoreCase("store manager")){
+            userName = "storemanager85";
+        }else {
+            throw new RuntimeException("Invalid role!");
+        }
+        System.out.println("Login as " + role);
+        login(userName,"UserUser123");
     }
 }
